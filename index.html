@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora EcoTrip</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <main class="app-shell">
+        <section class="hero">
+            <p class="eyebrow">Mobilidade consciente</p>
+            <h1>Calculadora <span>EcoTrip</span></h1>
+            <p class="intro">
+                Estime a emissão de CO2 da sua viagem com base em distância, meio de transporte e perfil do trajeto.
+                Compare cenários e escolha a opção mais sustentável.
+            </p>
+        </section>
+
+        <section class="card form-card">
+            <h2>Simular viagem</h2>
+            <form id="tripForm" novalidate>
+                <div class="grid two">
+                    <label>
+                        Distância (km)
+                        <input id="distance" type="number" min="1" step="0.1" placeholder="Ex.: 125.5" required />
+                    </label>
+
+                    <label>
+                        Meio de transporte
+                        <select id="transport" required>
+                            <option value="">Selecione</option>
+                            <option value="car_gasoline">Carro (gasolina)</option>
+                            <option value="car_electric">Carro elétrico</option>
+                            <option value="bus">Ônibus</option>
+                            <option value="train">Trem</option>
+                            <option value="plane">Avião</option>
+                            <option value="motorcycle">Moto</option>
+                            <option value="bike">Bicicleta</option>
+                            <option value="walk">Caminhada</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="grid two">
+                    <label>
+                        Perfil do trajeto
+                        <select id="routeProfile" required>
+                            <option value="">Selecione</option>
+                            <option value="urban">Urbano</option>
+                            <option value="highway">Rodoviário</option>
+                            <option value="mountain">Montanhoso</option>
+                            <option value="heavy_traffic">Trânsito intenso</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Passageiros no veículo
+                        <input id="passengers" type="number" min="1" step="1" value="1" />
+                    </label>
+                </div>
+
+                <label class="check">
+                    <input id="roundTrip" type="checkbox" />
+                    Ida e volta
+                </label>
+
+                <div class="actions">
+                    <button type="submit">Calcular impacto</button>
+                    <button type="button" id="swapScenario" class="ghost">Comparar transporte mais sustentável</button>
+                </div>
+            </form>
+            <p id="errorMsg" class="error" aria-live="polite"></p>
+        </section>
+
+        <section class="card result-card" id="resultCard" aria-live="polite">
+            <h2>Resultado da emissão</h2>
+            <div class="result-main">
+                <p class="label">Emissão estimada</p>
+                <p class="value" id="resultKg">--</p>
+                <p class="sub" id="resultSummary">Preencha os dados para visualizar o impacto ambiental.</p>
+            </div>
+
+            <div class="chips">
+                <article>
+                    <p class="chip-title">Classificação</p>
+                    <p id="impactClass">--</p>
+                </article>
+                <article>
+                    <p class="chip-title">Árvores para compensar*</p>
+                    <p id="treesNeeded">--</p>
+                </article>
+                <article>
+                    <p class="chip-title">Comparação alternativa</p>
+                    <p id="alternative">--</p>
+                </article>
+            </div>
+
+            <p class="note">*Estimativa simplificada: 1 árvore adulta absorve cerca de 21 kg de CO2/ano.</p>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
