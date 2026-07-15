@@ -17,14 +17,14 @@ const routeMultipliers = {
 };
 
 const transportNames = {
-    car_gasoline: "carro a gasolina",
-    car_electric: "carro elétrico",
-    bus: "ônibus",
-    train: "trem",
-    plane: "avião",
-    motorcycle: "moto",
-    bike: "bicicleta",
-    walk: "caminhada",
+    car_gasoline: "gasoline car",
+    car_electric: "electric car",
+    bus: "bus",
+    train: "train",
+    plane: "plane",
+    motorcycle: "motorcycle",
+    bike: "bike",
+    walk: "walking",
 };
 
 const form = document.getElementById("tripForm");
@@ -60,14 +60,14 @@ function calculateEmission({ distance, transport, routeProfile, passengers, roun
 
 function classifyImpact(totalKg) {
     if (totalKg < 5) {
-        return { label: "Baixo", className: "low" };
+        return { label: "Low", className: "low" };
     }
 
     if (totalKg < 20) {
-        return { label: "Médio", className: "medium" };
+        return { label: "Medium", className: "medium" };
     }
 
-    return { label: "Alto", className: "high" };
+    return { label: "High", className: "high" };
 }
 
 function bestTransportAlternative(distance, routeProfile, roundTrip) {
@@ -98,19 +98,19 @@ function validateInputs() {
     const routeProfile = routeProfileSelect.value;
 
     if (!distance || distance <= 0) {
-        return "Informe uma distância válida maior que 0.";
+        return "Enter a valid distance greater than 0.";
     }
 
     if (!transport) {
-        return "Selecione um meio de transporte.";
+        return "Select a transport type.";
     }
 
     if (!routeProfile) {
-        return "Selecione o perfil do trajeto.";
+        return "Select a route profile.";
     }
 
     if (!passengers || passengers < 1) {
-        return "Informe ao menos 1 passageiro.";
+        return "Enter at least 1 passenger.";
     }
 
     return "";
@@ -121,18 +121,18 @@ function renderResult(calculation, alternative) {
     const trees = Math.ceil(calculation.totalKg / 21);
 
     resultKgEl.textContent = formatKg(calculation.totalKg);
-    resultSummaryEl.textContent = `Viagem de ${calculation.distance} km usando ${transportNames[calculation.transport]}${calculation.roundTrip ? " (ida e volta)" : ""}.`;
+    resultSummaryEl.textContent = `Trip of ${calculation.distance} km using ${transportNames[calculation.transport]}${calculation.roundTrip ? " (round trip)" : ""}.`;
 
     impactClassEl.textContent = impact.label;
     impactClassEl.className = impact.className;
 
-    treesNeededEl.textContent = trees <= 0 ? "0" : `${trees} por ano`;
+    treesNeededEl.textContent = trees <= 0 ? "0" : `${trees} per year`;
 
     if (alternative) {
         const diff = Math.max(calculation.totalKg - alternative.emission, 0);
-        alternativeEl.textContent = `${transportNames[alternative.transport]} pode reduzir ~${diff.toFixed(2)} kg CO2e`;
+        alternativeEl.textContent = `${transportNames[alternative.transport]} can reduce about ${diff.toFixed(2)} kg CO2e`;
     } else {
-        alternativeEl.textContent = "Sem alternativa calculada.";
+        alternativeEl.textContent = "No alternative calculated.";
     }
 }
 
@@ -167,7 +167,7 @@ form.addEventListener("submit", (event) => {
 
 swapScenarioBtn.addEventListener("click", () => {
     if (!lastCalculation) {
-        errorMsg.textContent = "Primeiro, calcule uma viagem para comparar cenários.";
+        errorMsg.textContent = "First, calculate a trip to compare scenarios.";
         return;
     }
 
