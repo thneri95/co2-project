@@ -36,7 +36,7 @@ For individual vehicles (cars/motorcycles), emissions are divided by the number 
 - Emission factors are approximate and intended for educational and comparative purposes.
 - The tree calculation (21 kg CO2/year per tree) is a simplified estimate.
 
-## Image of calculator
+## Image of calculator - Completed!
 <img width="864" height="846" alt="image" src="https://github.com/user-attachments/assets/b42e9e9c-7f1b-4f62-996b-73255fb6a22e" />
 
 
