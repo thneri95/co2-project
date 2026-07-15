@@ -40,7 +40,6 @@ For individual vehicles (cars/motorcycles), emissions are divided by the number 
 <img width="864" height="846" alt="image" src="https://github.com/user-attachments/assets/b42e9e9c-7f1b-4f62-996b-73255fb6a22e" />
 
 
-![EcoTrip Calculator](Calculadora co2.png)
 
 
 
